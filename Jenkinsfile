@@ -21,6 +21,15 @@ pipeline {
                 sh 'docker push dknova2/construction-website:latest'
             }
         }
+        stage('Deploy') {
+    steps {
+        sh '''
+        docker rm -f construction-deploy || true
+        docker pull dknova2/construction-website:latest
+        docker run -d -p 8082:80 --name construction-deploy dknova2/construction-website:latest
+        '''
+    }
+}
 
     }
 }
