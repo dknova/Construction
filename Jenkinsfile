@@ -16,5 +16,11 @@ pipeline {
             }
         }
 
+        stage('Push Docker Image') {
+            steps {
+                sh 'docker push dknova2/construction-website:latest'
+            }
+        }
+
     }
 }
